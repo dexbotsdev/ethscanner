@@ -37,11 +37,14 @@ function App() {
         console.log(result)
 
         getPairInformationByChain("ethereum",result.PairAddress).then((response)=>{
+
+          console.log(response);
+
           result.priceUsd=response.pair.priceUsd;
           result.priceNative=response.pair.priceNative;
+          result.fdv=response.pair?.fdv?response.pair?.fdv:0;
           setTokenScanData(result)
         })
-        
         handleClose();
       }).catch(Error => {
         handleClose();
